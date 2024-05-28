@@ -5,10 +5,11 @@
 body {
   font-family: "Euclid Circular A", Poppins;
   color: #f9f9f9;
+  height: 80vh;
   background-image: url("bg.webp");
-  background-size: 400%;
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: 0% 10%;
+  background-position: center;
 }
 
 body::after {
@@ -32,7 +33,7 @@ button {
 
 .burger {
   z-index: 3;
-  top: 222px;
+  top: 166px;
   left: 38px;
   display: grid;
   place-items: center;
@@ -50,16 +51,16 @@ body.open .burger {
 
 .menu {
   z-index: 2;
-  top: 0;
-  left: 0;
+  inset: 0;
+  bottom: 20vh;
   display: grid;
   place-items: center;
-  width: 80%;
-  height: 100%;
-  background: rgb(0 0 0 / 85%);
+  background: rgb(0 0 0 / 60%);
+  backdrop-filter: blur(10px);
   padding: 0 64px;
-  translate: -100% 0;
-  transition: translate 0.375s cubic-bezier(0.175, 0.885, 0.32, 1);
+  text-align: center;
+  transition: translate 0.475s cubic-bezier(0.175, 0.885, 0.32, 1);
+  animation: menu-out 0.475s both;
 }
 
 .menu nav {
@@ -68,10 +69,19 @@ body.open .burger {
 
 @keyframes menu-in {
   0% {
+    translate: -100% 0;
     clip-path: ellipse(60% 60% at 0% 50%);
   }
   100% {
+    translate: 0;
     clip-path: ellipse(120% 120% at 0% 50%);
+  }
+}
+
+@keyframes menu-out {
+  100% {
+    opacity: 0;
+    visibility: hidden;
   }
 }
 
@@ -79,7 +89,7 @@ body.open .menu {
   opacity: 1;
   visibility: visible;
   translate: 0;
-  animation: menu-in 0.375s;
+  animation: menu-in 0.475s both;
 }
 
 body.open .menu nav {
@@ -110,6 +120,8 @@ body.open .menu nav {
   width: 260px;
   text-decoration: none;
   cursor: pointer;
+  opacity: 1;
+  visibility: visible;
   transition: 0.4s;
 }
 
@@ -120,9 +132,19 @@ body.open .menu a {
 @keyframes appear {
   0% {
     opacity: 0;
-    translate: -30px 0;
+    translate: 0 30px;
   }
   100% {
     opacity: 1;
   }
+}
+
+.insta-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 20vh;
+  z-index: 10;
+  background-color: black;
 }
